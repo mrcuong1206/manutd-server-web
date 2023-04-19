@@ -58,10 +58,25 @@ const deleteTodo = async (req, res) => {
   return res.status(204).json({});
 };
 
+const searchPlayer = async (req, res) => {
+  const { lastname } = req.query;
+
+  try {
+    const data = await Todo.find({
+      lastname: { $regex: new RegExp(lastname, "i") },
+    });
+    res.json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 module.exports = {
   createTodo,
   getAll,
   deleteTodo,
   updateTodo,
   getById,
+  searchPlayer,
 };

@@ -31,4 +31,22 @@ const createProductt = async (req, res) => {
   });
 };
 
-module.exports = { getAlll, createProductt, getProductById };
+const updateProduct = async (req, res) => {
+  const updatedProduct = await Product.findByIdAndUpdate(
+    req.params._id,
+    req.body,
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+
+  return res.status(200).json({
+    status: "success",
+    data: {
+      product: updatedProduct,
+    },
+  });
+};
+
+module.exports = { getAlll, createProductt, getProductById, updateProduct };
