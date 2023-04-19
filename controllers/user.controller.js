@@ -20,5 +20,5 @@ const createUser = async (req, res) => {
     },
   });
 };
-
+console.log("Oke");
 module.exports = { createUser, getAllUser };
