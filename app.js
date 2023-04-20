@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+const bcrypt = require("bcryptjs");
+
 //Player
 const {
   createTodo,
@@ -21,7 +23,11 @@ const {
 } = require("./controllers/product.controller");
 
 // User
-const { createUser, getAllUser } = require("./controllers/user.controller");
+const {
+  getAllUser,
+  registerUser,
+  loginUser,
+} = require("./controllers/user.controller");
 
 const app = express();
 app.use(express.json());
@@ -55,4 +61,5 @@ app.patch("/product/:_id", updateProduct);
 
 // User
 app.get("/users", getAllUser);
-app.post("/register", createUser);
+app.post("/register", registerUser);
+app.post("/login", loginUser);
