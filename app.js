@@ -20,6 +20,7 @@ const {
   createProductt,
   getProductById,
   updateProduct,
+  deleteProduct,
 } = require("./controllers/product.controller");
 
 // User
@@ -50,16 +51,17 @@ app.post("/todo", createTodo);
 app.delete("/todo/:_id", deleteTodo);
 app.patch("/todo/:_id", updateTodo);
 
-// search
-app.get("todo/search", searchPlayer);
-
 // Product
 app.get("/product", getAlll);
 app.get("/product/:_id", getProductById);
 app.post("/product", createProductt);
 app.patch("/product/:_id", updateProduct);
+app.delete("/product/:_id", deleteProduct);
 
 // User
 app.get("/users", getAllUser);
 app.post("/register", registerUser);
 app.post("/login", loginUser);
+
+// Search
+app.get("/search", searchPlayer);

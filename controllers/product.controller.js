@@ -31,6 +31,18 @@ const createProductt = async (req, res) => {
   });
 };
 
+const deleteProduct = async (req, res) => {
+  const product = await Product.findByIdAndDelete(req.params._id);
+
+  if (!product) {
+    return res.status(404).json({
+      message: "No product found with ID",
+    });
+  }
+
+  return res.status(204).json({});
+};
+
 const updateProduct = async (req, res) => {
   const updatedProduct = await Product.findByIdAndUpdate(
     req.params._id,
@@ -49,4 +61,10 @@ const updateProduct = async (req, res) => {
   });
 };
 
-module.exports = { getAlll, createProductt, getProductById, updateProduct };
+module.exports = {
+  getAlll,
+  createProductt,
+  getProductById,
+  updateProduct,
+  deleteProduct,
+};

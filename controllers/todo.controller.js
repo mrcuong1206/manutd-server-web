@@ -10,6 +10,35 @@ const getAll = async (req, res) => {
   });
 };
 
+const searchPlayer = async (req, res) => {
+  const searchText = req.query.searchText;
+  try {
+    const searchText = req.query.searchText;
+    const todos = await Todo.find({
+      lastName: new RegExp(searchText, "i"),
+    });
+    res.status(200).json({ success: true, data: { todos } });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
+
+// search
+// const getAll = async (req, res) => {
+//   let todos;
+//   if (req.query.searchText) {
+//     todos = await Todo.find({ $text: { $search: req.query.searchText } });
+//   } else {
+//     todos = await Todo.find();
+//   }
+//   return res.status(200).json({
+//     data: {
+//       todos,
+//     },
+//   });
+// };
+
 const createTodo = async (req, res) => {
   const newTodo = await Todo.create(req.body);
 
@@ -56,20 +85,6 @@ const deleteTodo = async (req, res) => {
   }
 
   return res.status(204).json({});
-};
-
-const searchPlayer = async (req, res) => {
-  const { lastname } = req.query;
-
-  try {
-    const data = await Todo.find({
-      lastname: { $regex: new RegExp(lastname, "i") },
-    });
-    res.json(data);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server error" });
-  }
 };
 
 module.exports = {

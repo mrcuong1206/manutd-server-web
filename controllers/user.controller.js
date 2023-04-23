@@ -22,7 +22,7 @@ const registerUser = async (req, res) => {
     const oldUser = await User.findOne({ email });
 
     if (oldUser) {
-      return res.json({ error: "User Exists" });
+      return res.status(409).json({ error: "User Exists" });
     }
     await User.create({
       fname,
@@ -30,7 +30,11 @@ const registerUser = async (req, res) => {
       email,
       password: encryptedPassword,
     });
-    res.send({ status: "ok" });
+    if (res.status(200)) {
+      return res.json({ status: "ok" });
+    } else {
+      return res.json({ error: "error" });
+    }
   } catch (error) {
     res.send({ status: "error" });
   }
