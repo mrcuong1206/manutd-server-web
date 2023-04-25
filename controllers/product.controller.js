@@ -1,7 +1,13 @@
 const Product = require("../models/product.models");
 
 const getAlll = async (req, res) => {
-  const products = await Product.find(req.query);
+  // Lọc theo category
+  const filter = {};
+  if (req.query.category) {
+    filter.category = req.query.category;
+  }
+
+  const products = await Product.find(filter);
 
   return res.status(200).json({
     data: {

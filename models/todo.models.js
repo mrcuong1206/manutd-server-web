@@ -50,10 +50,10 @@ const todoSchema = new mongoose.Schema({
   ],
 });
 
-todoSchema.index({
-  firstname: "",
-  lastname: "",
-});
+// todoSchema.index({
+//   firstname: "",
+//   lastname: "",
+// });
 
 const Todo = mongoose.model("Todo", todoSchema);
 
