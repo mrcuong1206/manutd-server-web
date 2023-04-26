@@ -34,7 +34,7 @@ app.use(cors({ origin: "*" }));
 
 // mongoose.connect("mongodb://127.0.0.1:27017/todo-db");
 mongoose.connect(
-  "mongodb+srv://reyc:Mrcuong1206@mrcuong.yvip1ff.mongodb.net/?retryWrites=true&w=majority"
+  "mongodb+srv://reyc:Mrcuong1206@mrcuong.yvip1ff.mongodb.net/manutd?retryWrites=true&w=majority"
 );
 
 app.listen(8000, () => {
