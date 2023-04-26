@@ -30,9 +30,12 @@ const {
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: "*" }));
 
-mongoose.connect("mongodb://127.0.0.1:27017/todo-db");
+// mongoose.connect("mongodb://127.0.0.1:27017/todo-db");
+mongoose.connect(
+  "mongodb+srv://reyc:Mrcuong1206@mrcuong.yvip1ff.mongodb.net/?retryWrites=true&w=majority"
+);
 
 app.listen(8000, () => {
   console.log(`app listen on PORT 8000`);
